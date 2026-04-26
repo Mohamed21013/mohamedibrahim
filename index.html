@@ -8,6 +8,21 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
+  .fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 1s ease forwards;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+  <div class="hero fade-up">
+  <div class="card fade-up">
+  
 * {margin:0; padding:0; box-sizing:border-box;}
 body {
   font-family: 'Inter', sans-serif;
@@ -32,7 +47,7 @@ body {
   width:120px;
   height:120px;
   border-radius:50%;
-  background:#0f766e;
+  background:#6366F1;
   color:#fff;
   display:flex;
   align-items:center;
@@ -94,12 +109,26 @@ body {
 }
 
 .card:hover {
-  transform:translateY(-5px);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.08);
 }
 
 .card h2 {
   color:#0f766e;
   font-size:28px;
+}
+  .btn-primary {
+  background:#6366F1;
+  color:#fff;
+  transition:0.3s;
+}
+
+.btn-primary:hover {
+  background:#4F46E5;
+  transform: scale(1.05);
+}
+  .avatar {
+  box-shadow: 0 10px 30px rgba(99,102,241,0.4);
 }
 
 /* SECTION */
@@ -125,7 +154,22 @@ body {
 
 </style>
 </head>
+  
+<script>
+const elements = document.querySelectorAll('.fade-up');
 
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.animationDelay = "0.2s";
+      entry.target.classList.add("show");
+    }
+  });
+});
+
+elements.forEach(el => observer.observe(el));
+</script>
+  
 <body>
 
 <div class="container">
